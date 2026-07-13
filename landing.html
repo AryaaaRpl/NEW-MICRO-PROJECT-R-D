@@ -160,15 +160,10 @@
             width: 45vw;
             max-width: 450px;
             height: 350px;
-            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
-            border: 2px dashed rgba(0, 0, 0, 0.1);
-            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-            animation: float 6s ease-in-out infinite;
         }
 
         @media(min-width: 1100px) {
@@ -192,12 +187,14 @@
         .panca-indra-pin {
             width: 100%;
             height: 100vh;
+            padding: 80px;
         }
 
         .panca-indra {
             display: flex;
             align-items: center; /* Kembalikan ke center */
             justify-content: space-between;
+            padding: 0;
             width: 100%;
         }
 
@@ -247,13 +244,8 @@
         /* --- SECTION 3: FAKTANYA (OVERLAY CARDS) --- */
         .faktanya-section-container {
             position: relative;
-            background-color: var(--bg-dark);
             color: var(--text-light);
-            background-image: radial-gradient(circle at 50% 0%, #222 0%, transparent 70%);
             z-index: 3;
-            /* Tingkat layer di atas Panca Indra */
-            box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5);
-            /* Shadow halus pas numpuk ke atas */
         }
 
         .faktanya-card {
@@ -265,7 +257,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.01);
             position: relative;
             overflow: hidden;
         }
@@ -298,6 +290,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 100px;
             position: relative;
             z-index: 1;
         }
@@ -330,10 +323,8 @@
         }
 
         .faktanya-img-placeholder {
-            width: 400px;
-            height: 280px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px dashed rgba(255, 255, 255, 0.1);
+            width: auto;
+            height: auto;
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -699,7 +690,7 @@
                     <div class="hero-title-2">MAKNA</div>
                 </div>
                 <div class="hero-img-placeholder gsap-fade-up">
-                   <img src="assets/image-1.png" alt="Placeholder Image" style="width: 100%; height: 100%; border-radius: 20px;">
+                   <img src="assets/1.png" alt="Placeholder Image" style="width: 100%; height: 100%; border-radius: 20px;">
                 </div>
             </div>
         </div>
@@ -741,7 +732,7 @@
                     </div>
                 </div>
                 <div class="faktanya-img-placeholder">
-                    <span style="color:#999; font-weight: 700;">[IMG: Otak & Visual]</span>
+                    <img src="assets/imageotak.png" alt="Placeholder Image" style="width: 100%; height: 100%;" background-position: center;  >
                 </div>
             </div>
         </div>
