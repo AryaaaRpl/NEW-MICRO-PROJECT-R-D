@@ -241,11 +241,17 @@
             transform: scale(1.05);
         }
 
+        /* --- WRAPPER PANCA + FAKTANYA (BUAT PIN & ANIMASI COVER) --- */
+        .panca-faktanya-pin-wrap {
+            position: relative;
+        }
+
         /* --- SECTION 3: FAKTANYA (OVERLAY CARDS) --- */
         .faktanya-section-container {
             position: relative;
             color: var(--text-light);
             z-index: 3;
+            margin-top: -100vh; /* Overlap dengan panca indra */
         }
 
         .faktanya-card {
@@ -696,6 +702,9 @@
         </div>
     </div>
 
+    <!-- Wrap Panca + Faktanya untuk pin & animasi card menutupi -->
+    <div class="panca-faktanya-pin-wrap">
+
     <!-- Section 2: Panca Indra (Di-wrap khusus buat efek Pinning) -->
     <div class="panca-section-container">
         <div class="full-section panca-indra-pin">
@@ -716,12 +725,9 @@
         </div>
     </div>
 
-    <!-- Spacer: Memberikan jeda scroll 1 layar agar gambar Panca Indra bisa dilihat full dulu -->
-    <div style="height: 100vh; pointer-events: none; z-index: 1;"></div>
-
     <!-- Section 3: Faktanya (Card Hitam yang bergerak ke atas menutupi Panca Indra) -->
     <div class="full-section faktanya-section-container">
-        <div class="section-content faktanya-card gsap-fade-up">
+        <div class="section-content faktanya-card">
             <div class="faktanya-header">FAKTANYA</div>
             <div class="faktanya-body">
                 <div class="faktanya-stats">
@@ -737,6 +743,8 @@
             </div>
         </div>
     </div>
+
+    </div><!-- /panca-faktanya-pin-wrap -->
 
     <!-- Section 4: Form (GSAP PIN & SCROLL) -->
     <div class="form-section-container form-pin-trigger">
@@ -830,15 +838,29 @@
             .from(".panca-center", { y: 100, opacity: 0, duration: 1, ease: "power3.out" }, 0.2)
             .from(".panca-right", { x: 100, opacity: 0, duration: 1, ease: "power3.out" }, 0.4);
 
-        // 3. BARU ── EFEK SCROLL TRIGGER PANCA INDRA DIAM & CARD BERGERAK KE ATAS
-        // Kita kunci section Panca Indra pas posisinya pas di atas layar (top top)
+        // 3. BARU ── PIN WRAPPER & ANIMASI CARD MENUTUPI PANCA INDRA
+        // Pin wrapper yang berisi panca + faktanya
         ScrollTrigger.create({
-            trigger: ".panca-section-container",
+            trigger: ".panca-faktanya-pin-wrap",
             start: "top top",
-            end: "+=100%", // Pin selama 100% tinggi viewport
-            pin: ".panca-indra-pin",
-            pinSpacing: false, // Kembalikan ke false seperti semula agar animasinya jalan
+            end: "+=100%",
+            pin: true,
         });
+
+        // Faktanya card bergerak dari bawah ke atas menutupi panca indra
+        gsap.fromTo(".faktanya-card",
+            { y: "100vh" },
+            {
+                y: 0,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".panca-faktanya-pin-wrap",
+                    start: "top top",
+                    end: "+=100%",
+                    scrub: true,
+                }
+            }
+        );
 
         // 4. ANIMASI STICKY TITLE FORM SECTION
         ScrollTrigger.create({
